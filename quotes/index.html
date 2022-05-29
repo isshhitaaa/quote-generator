@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="quoteBox">
+    <div id="quotes">
+       
+    </div>
+    <div id="author"></div>
+    <button id="btn">New Quote</button>
+    <button id="tweet"> Tweet me </button>
+</div>
+    <script>
+        let org="";
+        let recentQuote="";
+        const Quote= document.getElementById("quotes");
+        const author= document.getElementById("author");
+        const btn = document.getElementById("btn");
+        const twit = document.getElementById("tweet");
+        const generate=()=>{
+        let n= Math.floor(Math.random()*1643);
+          //  console.log(n);
+          recentQuote=org[n];
+          console.log(org[n]);
+          Quote.innerText=`${org[n].text}`;
+        org[n].author==null ?(author.innerText= "Unknown" ): (author.innerText=`${org[n].author}`);
+
+        }
+        const getQuote= async ()=>{
+            const api= "https://type.fit/api/quotes";
+           const data = await fetch(api);
+           //const org= JSON.stringify(data)
+            org= await data.json();
+            generate();
+        //    console.log(org[0].text);
+        }
+       const tweetNow=()=>{
+           const tweet = `http://twitter.com/intent/tweet?text=${recentQuote.text} ${recentQuote.author}`
+           window.open(tweet);
+       }
+        btn.addEventListener("click",getQuote);
+        twit.addEventListener("click",tweetNow);
+        getQuote();
+    </script>
+</body>
+</html>

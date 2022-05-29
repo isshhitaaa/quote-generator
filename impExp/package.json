@@ -1,0 +1,16 @@
+{
+  "name": "impexp",
+  "version": "1.0.0",
+  "description": "npm",
+  "main": "oper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ishita",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {}
+}
